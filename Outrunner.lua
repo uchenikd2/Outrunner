@@ -12,7 +12,7 @@
 ---------------
 -- НАСТРОЙКИ
 -- Версия
-local ver = '3.3 beta'
+local ver = '3.3 beta 2'
 
 -- режим карты (1 - для игры одним героем; 2 - для классической игры)
 local gmode = 1
@@ -36,6 +36,9 @@ local tbl = {1,0}
 
 -- переменные для закла баф/дебаф минизон
 local mngmni = {1,0}
+
+-- переменные для банки на жезлы в лавках т2
+local t2banka = {0,1}
 
 -- переменные для предмтов на опыт в лавках т2 (2 из 3 = 66% шанс)
 local t2var = {0,1,2}
@@ -485,6 +488,8 @@ return {
 
 				-- на опыт 0
 				{ id = expt2go(0), min = 1, max = 1 },
+				-- банка на жезлы где нет на опыт
+				{ id = banka2go(2,0,0), min = 1, max = 1 },
 							
 				--арты
 				{ id = artResp1[1], min = 1, max = 1 },
@@ -560,6 +565,8 @@ return {
 
 				-- на опыт 1
 				{ id = expt2go(1), min = 1, max = 1 },
+				-- банка на жезлы где нет на опыт
+				{ id = banka2go(2,1,1), min = 1, max = 1 },
 
 				--арты
 				{ id = artResp1[4], min = 1, max = 1 },
@@ -760,12 +767,12 @@ return {
 				{ id = rnd('g000ig5057','g001ig0573','g001ig0574','g001ig0578','g001ig0577','g001ig0580','g001ig0579','g001ig0576','g001ig0165'), min = 1, max = 1 },
 				orr({ id = 'g000ig5110', min = 1, max = 1 }, { id = 'g000ig5040', min = 1, max = 1 }), -- Излечение +60 аое / Песнь Вотана +100
 
-				{ id = fbanka(2), min = 1, max = 1 }, -- Зелье завоевателя (желы)
+				{ id = fbanka(3), min = 1, max = 1 }, -- Зелье завоевателя (желы)
 
 			}
 		},
 --		 guard = gmm({}, guard4()),
-		guard = gmm(guardbanka(3), guard3()),
+		guard = gmm(guardbanka(4), guard3()),
 	},
 	}
 end
@@ -2854,6 +2861,29 @@ function p15()
 	end
 end
 
+-- для лавок т2 - в какой из низ будет банка на жезлы (в которй нет предмета на опыт)
+function banka2go(x,tbnk,e2go)
+	if x == banka then
+		--  если нет ни в одной лавке предмета на опыт
+		if t2var[1] == 2 then
+			if tbnk == t2banka[1] then
+				return 'g001ig0524'
+			else
+				return ''
+			end
+		else
+			-- если не в этой лавке предмет на опыт
+			if e2go ~= t2var[1] then
+				return 'g001ig0524'
+			else
+				return ''
+			end
+		end
+	else
+		return ''
+	end
+end
+
 -- для лавок т2 - в какой из низ будет предмет на опыт 
 function expt2go(t2rand)
 	local radn = t2var[1]
@@ -4280,7 +4310,7 @@ end
 function zoneGuardZone00(restx,resty)
 return {
 	subraceTypes = {Subrace.Human, Subrace.Heretic, Subrace.Dwarf, Subrace.Elf, Subrace.Neutral, Subrace.NeutralHuman, Subrace.NeutralElf, Subrace.NeutralGreenSkin, Subrace.NeutralMarsh, Subrace.NeutralWater, Subrace.NeutralBarbarian, Subrace.NeutralWolf, Subrace.NeutralWater}, -- Subrace.Undead, Subrace.NeutralDragon,  убрал
-	value = { min = 700*kef, max = 730*kef }, 
+	value = { min = 665*kef, max = 700*kef }, 
 	leaderIds = goldr14,
 	-- сопротивляемость ворам -10
 	leaderModifiers = {'g201um9131'},
@@ -4294,7 +4324,7 @@ return {
 			{ id = w15(), min = 1, max = 1 }, -- случ. банка вард
 			{ id = rnd(restx,resty), min = 1, max = 1}, -- пермо200+ / пермо-вард-эффект-дот
 
-			{ id = fbanka(4), min = 1, max = 1 }, -- Зелье завоевателя (желы)
+			{ id = fbanka(5), min = 1, max = 1 }, -- Зелье завоевателя (желы)
 		}
 	}
 }
@@ -4624,6 +4654,9 @@ function getZones(races)
 	gtp0p() -- [сброс т.перков для игрока]
 	gts1p() -- [сброс т.свитков для игрока]
 
+	-- перемешать для 1 расы таблицу банки на жезлы для лавки т2
+	mix(t2banka)
+	
 	-- перемешать для 1 расы таблицу сфер т11
 	mix(torb11)
 	-- перемешать для 1 расы таблицу сфер т12
@@ -4659,9 +4692,12 @@ function getZones(races)
 	gtp0p() -- [сброс т.перков для лавок]
 	gts1p() -- [сброс т.свитков для игрока]	
 
-	-- перемешать для 1 расы таблицу сфер т11
+	-- перемешать для 2 расы таблицу банки на жезлы для лавки т2
+	mix(t2banka)
+	
+	-- перемешать для 2 расы таблицу сфер т11
 	mix(torb11)
-	-- перемешать для 1 расы таблицу сфер т12
+	-- перемешать для 2 расы таблицу сфер т12
 	mix(torb12)
 	-- перемешать банки для игрока 2
 	mix(p03) mix(p04) mix(p05) mix(pw4) mix(pw6) 
@@ -4832,10 +4868,11 @@ template = {
 		gmm({
 			name = 'Банка на жезлы', -- parameters[2]
 			values = {
-				'Сундук центра',
-				'Лавка центра',
-				'Охрана у лавки',
-				'ГО т1',
+				'Сундук центра', --fbanka(1)
+				'Лавка т2', -- banka2go(2,..)
+				'Лавка центра', -- fbanka(3)
+				'Охрана у лавки', -- guardbanka(4)
+				'ГО т1', -- fbanka(5)
 				'Нет',
 			},
 			default = banka
