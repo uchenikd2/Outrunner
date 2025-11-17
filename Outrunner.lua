@@ -12,7 +12,7 @@
 ---------------
 -- НАСТРОЙКИ
 -- Версия
-local ver = '3.3 beta 2'
+local ver = '3.3 beta 3'
 
 -- режим карты (1 - для игры одним героем; 2 - для классической игры)
 local gmode = 1
@@ -165,9 +165,13 @@ local exp2 = {'g001ig0523','g001ig0588'}
 -- 600x7 [пермо-банка перк для ГО] "Честный труд" (сапоги) / Зелье оруженосца (знамя) / Эликсир учености (арты) / Зелье постижения (релики) / Зелье слова (свитки) / Каталог магических сфер
 local tp2p = {'g001ig0528','g001ig0526','g001ig0525','g001ig0527','g001ig0531','g001ig0529'}
 
--- Лидеры для ГО-14
+-- Лидеры для ГО-14 (до 500)
+-- Голем з 450, Привратник ор.вз 400, Ларней вд 436, Сущность бури вз 475, Сущность пламени ог 475, Цитриновая гаргулья ог/раз 430, Некситль ор/ог 342, Лесоруб ор/ор 430
+local goldr14 = {'g000uu7509','g000uu7504','g000uu7551','g000uu8162','g000uu8165','g000uu7574','g000uu7552','g000uu7591'}
+
+-- Лидеры для ГО-14 старые --не использую
 -- Вирм с 500, Гибельный рой ж 450, Голем з 450, Йорм вд.вд 508, Каменный предок ор 500, Мститель ог 550, Наместник Вотана вз 500, Привратник ор.вз 400, 
-local goldr14 = {'g000uu5380','g000uu8210','g000uu7509','g000uu7554','g000uu7511','g000uu7507','g000uu5358','g000uu7504'}
+-- local goldr14old = {'g000uu5380','g000uu8210','g000uu7509','g000uu7554','g000uu7511','g000uu7507','g000uu5358','g000uu7504'}
 
 -- Лидеры для ГО-24
 -- Белый дракон в 1160, Болотный страж з 775, Багряный ангел ж/там 900, Гримтурс вд 900, Демон Бездны ор/з 900, Зеленый дракон о 650, Стихийный голем 750 
@@ -812,8 +816,8 @@ end
 	-- Заклы баш_т3 т2статы*8шт : сокрушение -15броня, прокл.эмира -15урон / Cursa demoneus -15урон, terebrare corde -10точ.урон, Chronos -15ини, Спешащее время +10ини5урон, могущество +15урон, Песнь слез -10точность, Заколдованное оружие +10точн.вард.осл
 	local tblmg3t2 = {'g000ss0183','g000ss0184','g000ss0185','g000ss0050','g000ss0186','g000ss0187','g000ss0133','g000ss0034'}
 
-	-- т3*7шт : Призыв II: Валькирия / Призыв III: Энт Большой, Terra oblivionem -25опыт, Туман Смерти, Божественная мудрость (+15 опыт), Затопление, Излечение (+60 хил), Искусный торговец -20% скидка
-	local tblmg3t3 = {'g000ss0031','g000ss0108','g000ss0199','g000ss0074','g000ss0175','g000ss0144','g000ss0110','g000ss0085'}
+	-- т3*7шт : Призыв II: Валькирия / Призыв III: Энт Большой, Туман Смерти, Божественная мудрость (+15 опыт), Затопление, Излечение (+60 хил), Искусный торговец -20% скидка
+	local tblmg3t3 = {'g000ss0031','g000ss0108','g000ss0074','g000ss0175','g000ss0144','g000ss0110','g000ss0085'}
 
 	-- т45*7шт : Неподкупность, Merum facies -окам полим, Слабость плоти -оружие, Слабость разума -разум, Песнь Вотана +100 хил, Призыв IV: Танатос, Сумерки -закрывает карту, Пламенные небеса -30 вард от магии и бафы
 	local tblmg3t4 = {'g000ss0039','g000ss0127','g000ss0202','g000ss0203','g000ss0040','g000ss0078','g000ss0095','g000ss0057'}
@@ -928,7 +932,7 @@ function zoneTownsResp(playerRace)
 		gapMask = 15,
 		stack = {
 				subraceTypes = rsub(),
-			value = { min = gmm(380,430)*kef, max = gmm(400,450)*kef },
+			value = { min = gmm(400,450)*kef, max = gmm(420,470)*kef },
 			loot = {
 				items = {
 					{ id = 'g000ig0001', min = gmm(1,2), max = gmm(1,2) }, --рес
@@ -3168,10 +3172,10 @@ end
 ---------------------
 
 function zoneStacksRespZ00a()
-return {  -- 175*3
+return {  -- 165*3
 	count = 1,
 	subraceTypes = rsub(),
-	value = { min = 175*kef, max = 175*kef*kr },
+	value = { min = 165*kef, max = 165*kef*kr },
 	loot = {
 		items = {
 			{ id = 'g001ig0180', min = 1, max = 1 }, -- хил25
@@ -3181,10 +3185,10 @@ return {  -- 175*3
 }
 end
 function zoneStacksRespZ00b()
-return {  -- 175*3
+return {  -- 165*3
 	count = 1,
 	subraceTypes = rsub(),
-	value = { min = 175*kef, max = 175*kef*kr },
+	value = { min = 165*kef, max = 165*kef*kr },
 	loot = {
 		items = {
 			{ id = 'g001ig0180', min = 1, max = 1 }, -- хил25
@@ -3194,10 +3198,10 @@ return {  -- 175*3
 }
 end
 function zoneStacksRespZ00c()
-return {  -- 175*3
+return {  -- 165*3
 	count = 1,
 	subraceTypes = rsub(),
-	value = { min = 175*kef, max = 175*kef*kr },
+	value = { min = 165*kef, max = 165*kef*kr },
 	loot = {
 		items = {
 			{ id = torb11[2], min = 1, max = 1 }, -- Сфера 100 в цель
@@ -3208,10 +3212,10 @@ return {  -- 175*3
 end
 
 function zoneStacksRespZ001a()
-return { -- 180*2
+return { -- 170*2
 	count = 1,
 	subraceTypes = rsub(),
-	value = { min = 180*kef, max = 180*kef*kr },
+	value = { min = 170*kef, max = 170*kef*kr },
 	loot = {
 		items = {
 			{ id = 'g000ig0005', min = 1, max = 1 }, -- хил50
@@ -3221,10 +3225,10 @@ return { -- 180*2
 }
 end
 function zoneStacksRespZ001b()
-return { -- 180*2
+return { -- 170*2
 	count = 1,
 	subraceTypes = rsub(),
-	value = { min = 180*kef, max = 180*kef*kr },
+	value = { min = 170*kef, max = 170*kef*kr },
 	loot = {
 		itemTypes = { Item.Scroll },
 		value = { min = 140, max = 140 },
@@ -3237,10 +3241,10 @@ return { -- 180*2
 end
 
 function zoneStacksRespZ002a()
-return { -- 185*2
+return { -- 175*2
 	count = 1,
 	subraceTypes = rsub(),
-	value = { min = 185*kef, max = 185*kef*kr },
+	value = { min = 175*kef, max = 175*kef*kr },
 	loot = {
 		items = {
 			{ id = rndy(ttal1), min = 1, max = 1}, -- талик т1
@@ -3250,10 +3254,10 @@ return { -- 185*2
 }
 end
 function zoneStacksRespZ002b()
-return { -- 185*2
+return { -- 175*2
 	count = 1,
 	subraceTypes = rsub(),
-	value = { min = 185*kef, max = 185*kef*kr },
+	value = { min = 175*kef, max = 175*kef*kr },
 	loot = {
 		items = {
 			{ id = 'g001ig0378', min = 1, max = 1}, --хил75
@@ -3455,10 +3459,10 @@ end
 ----
 
 function zoneStacksResp1()
-return { -- 300xp*1
+return { -- 350xp*1
 	subraceTypes = rsub(),
 	count = 1,
-	value = { min = vgmode2(300), max = vgmode2(300)*kr },
+	value = { min = vgmode2(350), max = vgmode2(350)*kr },
 	loot = {
 		items = {
 			{ id = 'g001ig0378', min = 1, max = 1}, --хил75
@@ -3470,10 +3474,10 @@ return { -- 300xp*1
 end
 
 function Pred1Resp01a()
-return { -- 350хп*2
+return { -- 400хп*2
 	subraceTypes = rsub(),
 	count = 1,
-	value = { min = vgmode2(350), max = vgmode2(350)*kr },
+	value = { min = vgmode2(400), max = vgmode2(400)*kr },
 	loot = {
 		items = {
 			{ id = 'g000ig0006', min = 1, max = 1 }, --хил100
@@ -3484,10 +3488,10 @@ return { -- 350хп*2
 }
 end
 function Pred1Resp01b()
-return { -- 350хп*2
+return { -- 400хп*2
 	subraceTypes = rsub(),
 	count = 1,
-	value = { min = vgmode2(350), max = vgmode2(350)*kr },
+	value = { min = vgmode2(400), max = vgmode2(400)*kr },
 	loot = {
 		items = {
 			{ id = 'g001ig0378', min = 1, max = 1}, --хил75
@@ -3532,14 +3536,14 @@ return { -- 400xp*2 / свиток 200
 end
 
 function Pred1Resp1a()
-return { -- 450хп*2 -- талик т3
+return { -- 450хп*2 
 	subraceTypes = rsub(),
 	count = 1,
 	value = { min = vgmode2(450), max = vgmode2(450)*kr },
 	loot = {
 		items = {
-			{ id = rndy(ttal3), min = 1, max = 1}, -- талик т3
-			{ id = 'g000ig0005', min = 1, max = 1 }, --хил50
+			{ id = 'g001ig0128', min = 1, max = 1 }, -- оружия
+			{ id = 'g001ig0378', min = 1, max = 1 }, --хил75
 			{ id = 'g001ig0481', min = 1, max = 1 }, -- мал. шар жизни
 		}
 	}
@@ -3637,14 +3641,14 @@ return { -- 500хп*2 -- пермо
 }
 end
 function Pred1Resp4b()
-return { -- 500хп*2 --
+return { -- 550хп -- талик т3
 	subraceTypes = rsub(),
 	count = 1,
-	value = { min = vgmode2(500), max = vgmode2(500)*kr },
+	value = { min = vgmode2(550), max = vgmode2(550)*kr },
 	loot = {
 		items = {
+			{ id = rndy(ttal3), min = 1, max = 1}, -- талик т3
 			{ id = rnd('g000ig0001','g000ig0006'), min = 1, max = 1 }, --рес/хил100
-			{ id = 'g001ig0128', min = 1, max = 1 }, -- оружия
 			{ id = b15(), min = 1, max = 1}, -- случ. банка15
 		}
 	}
@@ -4310,7 +4314,7 @@ end
 function zoneGuardZone00(restx,resty)
 return {
 	subraceTypes = {Subrace.Human, Subrace.Heretic, Subrace.Dwarf, Subrace.Elf, Subrace.Neutral, Subrace.NeutralHuman, Subrace.NeutralElf, Subrace.NeutralGreenSkin, Subrace.NeutralMarsh, Subrace.NeutralWater, Subrace.NeutralBarbarian, Subrace.NeutralWolf, Subrace.NeutralWater}, -- Subrace.Undead, Subrace.NeutralDragon,  убрал
-	value = { min = 665*kef, max = 700*kef }, 
+	value = { min = 600*kef, max = 630*kef }, 
 	leaderIds = goldr14,
 	-- сопротивляемость ворам -10
 	leaderModifiers = {'g201um9131'},
