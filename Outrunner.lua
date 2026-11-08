@@ -12,7 +12,7 @@
 ---------------
 -- НАСТРОЙКИ
 -- Версия
-local ver = '3.4e'
+local ver = '3.4f'
 
 -- режим карты (1 - для игры одним героем; 2 - для классической игры) parameters[1]
 
@@ -3542,7 +3542,7 @@ return {  -- 150
 	owner = playmobsOwner(playerRaceX),
 	leaderModifiers = playmobsModif(),
 	count = 1,
-	maxSlots = rnd(2,3,4),
+	maxSlots = rnd(3,3,4),
 	subraceTypes = {Subrace.NeutralGreenSkin, Subrace.NeutralWolf, Subrace.NeutralMarsh},
 	value = { min = 150*kef, max = 150*kef*kr },
 	loot = {
@@ -3558,7 +3558,7 @@ return {  -- 155
 	owner = playmobsOwner(playerRaceX),
 	leaderModifiers = playmobsModif(),
 	count = 1,
-	maxSlots = rnd(2,3,4),
+	maxSlots = rnd(3,3,4),
 	subraceTypes = {Subrace.NeutralGreenSkin, Subrace.NeutralWolf, Subrace.NeutralMarsh},
 	value = { min = 155*kef, max = 155*kef*kr },
 	loot = {
@@ -3574,7 +3574,7 @@ return {  -- 160
 	owner = playmobsOwner(playerRaceX),
 	leaderModifiers = playmobsModif(),
 	count = 1,
-	maxSlots = rnd(2,3,4),
+	maxSlots = rnd(3,3,4),
 	subraceTypes = rsub(),
 	value = { min = 160*kef, max = 160*kef*kr },
 	loot = {
@@ -3590,7 +3590,7 @@ return {  -- 165
 	owner = playmobsOwner(playerRaceX),
 	leaderModifiers = playmobsModif(),
 	count = 1,
-	maxSlots = rnd(2,3,4),
+	maxSlots = rnd(3,3,4),
 	subraceTypes = rsub(),
 	value = { min = 165*kef, max = 165*kef*kr },
 	loot = {
@@ -3606,7 +3606,7 @@ return {  -- 170
 	owner = playmobsOwner(playerRaceX),
 	leaderModifiers = playmobsModif(),
 	count = 1,
-	maxSlots = rnd(2,3,4),
+	maxSlots = rnd(3,3,4),
 	subraceTypes = rsub(),
 	value = { min = 170*kef, max = 170*kef*kr },
 	loot = {
@@ -3623,7 +3623,7 @@ return { -- 175
 	owner = playmobsOwner(playerRaceX),
 	leaderModifiers = playmobsModif(),
 	count = 1,
-	maxSlots = rnd(2,3,4),
+	maxSlots = rnd(3,3,4),
 	subraceTypes = rsub(),
 	value = { min = 175*kef, max = 175*kef*kr },
 	loot = {
@@ -3639,7 +3639,7 @@ return { -- 180
 	owner = playmobsOwner(playerRaceX),
 	leaderModifiers = playmobsModif(),
 	count = 1,
-	maxSlots = rnd(2,3,4),
+	maxSlots = rnd(3,3,4),
 	subraceTypes = rsub(),
 	value = { min = 180*kef, max = 180*kef*kr },
 	loot = {
@@ -3658,7 +3658,7 @@ return { -- 185
 	owner = playmobsOwner(playerRaceX),
 	leaderModifiers = playmobsModif(),
 	count = 1,
-	maxSlots = rnd(2,3,4),
+	maxSlots = rnd(3,3,4),
 	subraceTypes = rsub(),
 	value = { min = 185*kef, max = 185*kef*kr },
 	loot = {
@@ -3674,7 +3674,7 @@ return { -- 190
 	owner = playmobsOwner(playerRaceX),
 	leaderModifiers = playmobsModif(),
 	count = 1,
-	maxSlots = rnd(2,3,4),
+	maxSlots = rnd(3,3,4),
 	subraceTypes = rsub(),
 	value = { min = 190*kef, max = 190*kef*kr },
 	loot = {
